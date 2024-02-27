@@ -17,13 +17,13 @@ theme_set(theme_bw())
 ### Basic stuff 1
 
 # Modify the following code to add a color depending on the `gear` column:
-mtcars %>% # we work on the mtcars dataset, send it to ggplot
+mtcars |> # we work on the mtcars dataset, send it to ggplot
     # define the x and y variables of the plot, and also the color:
     ggplot(aes(x = wt, y = mpg))+ 
         geom_point() # plot with points
 
 # Now change the color and shape of the points, and add transparency
-mtcars %>% 
+mtcars |> 
     ggplot(aes(x = wt, y = mpg))+ 
         geom_point(___)
 
@@ -31,7 +31,7 @@ mtcars %>%
 
 # What happens if you use `factor(gear)` instead?
 
-P <- mtcars %>% # we work on the mtcars dataset, send it to ggplot
+P <- mtcars |> # we work on the mtcars dataset, send it to ggplot
     # define the x and y variables of the plot, and also the color:
     ggplot(aes(x = wt, y = mpg, color = gear))+ 
         geom_point() # plot with points
@@ -54,7 +54,7 @@ P + ___
 ### Faceting 1
 
 # Modify the following code to place each `carb` in a different facet. Also add a color, but remove the legend.
-mtcars %>% # we work on the mtcars dataset, send it to ggplot
+mtcars |> # we work on the mtcars dataset, send it to ggplot
     ggplot(aes(x = wt, y = mpg))+ # define the x and y variables of the plot, and also the color
         geom_point() +   # plot with points
         facet____(___) + # add a faceting
@@ -64,7 +64,7 @@ mtcars %>% # we work on the mtcars dataset, send it to ggplot
 ### Faceting 2
 
 # Modify the following code to arrange `mpg` vs `wt` plots on a grid showing `gear` vs `carb`. Also add a color depending on `cyl`. Also, try adding a free `x` scale range, or a free `y` scale range, or free `x` and `y` scale ranges.
-mtcars %>% # we work on the mtcars dataset, send it to ggplot
+mtcars |> # we work on the mtcars dataset, send it to ggplot
     ggplot(aes(x = ___, y = ___))+ # define the x and y variables of the plot, and also the color
         geom_point() +   # plot with points
         facet____(___) # add a faceting
@@ -80,7 +80,7 @@ df
 
 # Using `ggplot`, plot `y` as a function of `x` with points and save it into `Py`:
 
-Py <- df %>% 
+Py <- df |> 
     ___
 Py
 
@@ -92,19 +92,19 @@ Py
 
 # Using `ggplot`, plot `z` as a function of `x` with a red line and save it into `Pz`:
 
-Pz <- df %>% 
+Pz <- df |> 
     ___
 Pz
 
 # Using `ggplot`, plot a histogram of `w` with transparent blue bars surrounded by a red line, and save it into `Pw`. You can play with the number of bins too.
 
-Pw <- df %>% 
+Pw <- df |> 
     ___
 Pw
 
 # Using `ggplot`, plot a density of `u` with a transparent blue area surrounded by a red line, and save it into `Pu`. Play with the `bw` parameter so that you see many peaks.
 
-Pu <- df %>% 
+Pu <- df |> 
     ___
 Pu
 
@@ -118,7 +118,7 @@ ___
 
 
 # Now, transform the tibble df to a tidy one using a pivot function, and gather all 5 plots on a grid with 2 columns, using `facet_wrap()` to add a facet for each variable. Use a color for each variable.
-df %>% 
+df |> 
     pivot_____()
 
 
@@ -129,21 +129,22 @@ df %>%
 # Let's work on the `iris` dataset
 
 # Plot the histogram of `Sepal.Length` for each species using geom_histogram()
-iris %>% 
+iris |> 
     ggplot(___)
 
 # Plot the density of `Sepal.Length` for each species using geom_density()
-iris %>% 
+iris |> 
     ggplot(___)
 
 # Compare the distributions of `Sepal.Length` for each species using geom_boxplot() or geom_violin()
-iris %>% 
+iris |> 
     ggplot(___)
 
-iris %>% 
+iris |> 
     ggplot(___)
 
 # Add the original points to the boxplot or violin plot using geom_jitter(), add the mean value as a large point and show its value using geom_text()
+
 
 
 
@@ -157,6 +158,28 @@ ggbetweenstats(
 )
 
 # # # # # # # # # # # # # # # # # # # # # # # # # 
+# Note about the boxplot notch
+# # # # # # # # # # # # # # # # # # # # # # # # # 
+# The notch displays a confidence interval around the median
+
+df <- tibble(group=c("A","B","C","D"),
+             values=list(rnorm(1e1),rnorm(1e2),rnorm(1e3),rnorm(1e4))) |> 
+    unnest(values)
+
+# conf.int around the mean
+df |> 
+    nest(data=values) |> 
+    mutate(ttest=map(data, ~t.test(.x$values)),
+           ttest=map(ttest, broom::tidy)) |> 
+    unnest(ttest)
+
+# conf.int around the median
+df |> 
+    ggplot(aes(y=values, color=group))+
+        geom_boxplot(notch = TRUE)
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # 
 ## Exercise 4: 3D plots
 # # # # # # # # # # # # # # # # # # # # # # # # # 
 
@@ -164,13 +187,14 @@ ggbetweenstats(
 # Plot with geom_contour_filled() or geom_raster() and see the difference
 # Add big red diamond points in (80, 4.4) and (53, 1.94) using either geom_point() or annotate("point", ...)
 
-faithfuld %>% 
+faithfuld |> 
     ggplot(___)+
         geom_contour_filled()
 
-faithfuld %>% 
+faithfuld |> 
     ggplot(___)+
         geom_raster()
 
-
-
+# Or plot it with lines on top of each other (ridgeline plot)
+___
+        

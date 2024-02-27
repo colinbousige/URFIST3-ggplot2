@@ -1,48 +1,48 @@
-# Cycle reproductibilité (3) : Faire des graphiques sous R avec ggplot2
+# Reproducibility cycle (3): Making graphs in R with ggplot2
 
 ## Description
 
-Cette archive contient les supports de cours pour le 1er cours du cycle de reproductibilité de l'URFIST de Lyon.
+This archive contains the course materials for the 1st course in the reproducibility cycle at URFIST Lyon.
 
-Lien vers le contenu complet du cours : https://colinbousige.github.io/rclass/
+Link to the full course content: https://colinbousige.github.io/rclass/
 
-## Auteur
+## Author
 
 [Colin Bousige](mailto:colin.bousige@cnrs.fr), Laboratoire des Multimatériaux et Interfaces, UMR 5615 CNRS-Université Lyon 1, Villeurbanne, France.
 
-## Durée
+## Duration
 
-1 jour
+1 day
 
-## Objectifs
+## Objectives
 
-- Travailler avec la structure de données "tidy" et le package `tidyverse`
-- Comprendre la structure d'un graphique `ggplot2`.
-- Connaitre les fonctions associées aux principales couches.
-- Maitriser les représentations graphiques les plus courantes (points, lignes, histogrammes, barres d'erreur...).
+- Work with the "tidy" data structure and the "tidyverse" package.
+- Understand the structure of a `ggplot2` graph.
+- Know the functions associated with the main layers.
+- Master the most common graphical representations (points, lines, histograms, error bars, etc.).
 
-## Programme
+## Program
 
-- Rappels sur l'organisation du travail sous R et Rstudio
-- Rappels sur le travail avec les données "tidy" et le package `tidyverse`
-- Introduction au package `ggplot2` et à la "grammar of graphics"
-  - Principe des couches successives
-  - Réaliser un scatterplot, barplot, boxplot, lineplot...
-  - Réaliser une carte de couleurs pour des données 3D
-- Analyse des données en fonction de multiples variables : graphiques en facettes.
-- Faire un fit de ses données et représenter le résultat
-- Personnaliser son graphique `ggplot2` :
-  - Gestion des couleurs
-  - Gestion des titres, des axes, de la légende...
-  - Ajouter du texte et autres annotations
-  - Utiliser et personnaliser les thèmes
-- Exporter ses graphes en png, pdf et LaTeX
-- Rendre ses graphes interactifs avec `plotly`
+- Reminders on the organisation of work in R and Rstudio
+- Reminder of how to work with tidy data and the tidyverse package
+- Introduction to the 'gplot2' package and the 'grammar of graphics
+  - The principle of successive layers
+  - Creating a scatterplot, barplot, boxplot, lineplot, etc.
+  - Creating a colour map for 3D data
+- Analysing data as a function of multiple variables: facet graphs.
+- Fit your data and display the result
+- Customise your `ggplot2` graph:
+  - Colour management
+  - Managing titles, axes, legends, etc.
+  - Adding text and other annotations
+  - Using and customising themes
+- Exporting graphs as png, pdf and LaTeX files
+- Make your graphs interactive with `plotly`.
 
-## Pré-requis
+## Prerequisites
 
-Pas de domaine scientifique spécifique attendu : ce qui est vu dans ce cours est adapté à tous les domaines. Le participant vient avec son ordinateur avec R et Rstudio installés. Le participant a des connaissances de base sur le langage R : création et manipulation des objets sous R, installation de packages, importation des données. Les participants sont encouragés à venir avec leurs propres données pour des exercices plus interactifs et adaptés à leurs besoins.
+No specific scientific field is required: what is covered in this course is suitable for all fields. The participant comes with his/her computer with R and Rstudio installed. The participant has basic knowledge of the R language: creating and manipulating objects in R, installing packages, importing data. Participants are encouraged to bring their own data for more interactive exercises tailored to their needs.
 
-## Type d'intervention
+## Type of course
 
-Cours et travaux pratiques. [Le contenu du cours est en ligne](http://lmi.cnrs.fr/r).
+Course and practical work. [Course content is available online](http://lmi.cnrs.fr/r).
