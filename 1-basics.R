@@ -146,6 +146,15 @@ iris |>
 # Add the original points to the boxplot or violin plot using geom_jitter(), add the mean value as a large point and show its value using geom_text()
 
 
+# Using `ggExtra`, add a marginal histograms to a plot of `Sepal.Length` vs `Sepal.Width` 
+
+P <- iris |> 
+    ggplot(___)
+ggMarginal(___)
+
+# Also, take a look at `ggscatterhist()` from the `ggpubr` package: https://rpkgs.datanovia.com/ggpubr/
+# `ggpubr` has also many functions to add statistical significance to your plots
+ggpubr::ggscatterhist(___)
 
 
 # Using the package "ggstatsplot" (https://indrajeetpatil.github.io/ggstatsplot/)
@@ -156,6 +165,7 @@ ggbetweenstats(
   y     = Sepal.Length,
   title = "Distribution of sepal length across Iris species"
 )
+
 
 # # # # # # # # # # # # # # # # # # # # # # # # # 
 # Note about the boxplot notch

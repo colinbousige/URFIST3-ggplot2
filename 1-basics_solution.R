@@ -209,6 +209,29 @@ iris |>
         geom_text(data=ave, aes(label=round(mean, 2)), y=8, size=10)
 
 
+# Using `ggExtra`, add a marginal histograms to a plot of `Sepal.Length` vs `Sepal.Width` 
+library(ggExtra)
+p <- iris |> 
+    ggplot(aes(x = Sepal.Width, y=Sepal.Length, color=Species))+
+        geom_point()+
+        theme(legend.position = "bottom")
+ggMarginal(p, groupColour = TRUE)
+
+# Also, take a look at `ggscatterhist()` from the `ggpubr` package: https://rpkgs.datanovia.com/ggpubr/
+ggpubr::ggscatterhist(
+ iris, 
+ x = "Sepal.Length", 
+ y = "Sepal.Width",
+ color = "Species", 
+ margin.plot = "density",
+ size = 3, alpha = 0.6,
+ palette = c("#00AFBB", "#E7B800", "#FC4E07"),
+ margin.params = list(color = "Species", size = 1),
+ ggtheme=theme_bw(),
+ legend = "right",
+)
+
+
 # Using the package "ggstatsplot" (https://indrajeetpatil.github.io/ggstatsplot/)
 library(ggstatsplot)
 ggbetweenstats(
