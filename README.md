@@ -25,7 +25,7 @@ Link to the full course content: https://colinbousige.github.io/rclass/
 
 - Reminders on the organisation of work in R and Rstudio
 - Reminder of how to work with tidy data and the tidyverse package
-- Introduction to the 'gplot2' package and the 'grammar of graphics
+- Introduction to the `gplot2` package and the *grammar of graphics*
   - The principle of successive layers
   - Creating a scatterplot, barplot, boxplot, lineplot, etc.
   - Creating a colour map for 3D data
@@ -45,4 +45,4 @@ No specific scientific field is required: what is covered in this course is suit
 
 ## Type of course
 
-Course and practical work. [Course content is available online](http://lmi.cnrs.fr/r).
+Course and practical work. [Course content is available online](https://colinbousige.github.io/rclass/12-plotting.html#advanced-plotting-using-ggplot2).
