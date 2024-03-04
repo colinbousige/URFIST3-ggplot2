@@ -1,6 +1,6 @@
 library(tidyverse)
 library(patchwork)
-theme_set(theme_bw())
+theme_set(theme_bw()+theme(text=element_text(size=16)))
 
 # # # # # # # # # # # # # # # # # # # # # # # # 
 # Tuning manually the legend
@@ -44,7 +44,11 @@ d |>
     guides(color = guide_legend(override.aes = list(shape = c(16,NA,NA),
                                                     size = c(3,NA,NA),
                                                     linewidth = c(NA,1,3),
-                                                    linetype = c("blank","dotted","solid"))))
+                                                    linetype = c("blank","dotted","solid"))))+
+    theme(legend.position = "inside", 
+          legend.position.inside = c(.05, .9), 
+          legend.background = element_blank(),
+          legend.text = element_text(size = 16))
 
 
 
@@ -55,6 +59,25 @@ d |>
 # # # # # # # # # # # # # # # # # # # # # # # # 
 # Logscales
 # # # # # # # # # # # # # # # # # # # # # # # # 
+
+d <- tibble(x=seq(1e-3,1e5,length=100), y=x)
+
+ggplot(data=d, aes(x=x, y=y))+
+  geom_line()+
+  scale_x_log10(guide = "axis_logticks")
+
+
+library(scales)
+ggplot(data=d, aes(x=x, y=y))+
+  geom_line()+
+  scale_x_log10(guide = "axis_logticks",
+                breaks = 10^(-20:20),
+                minor_breaks = rep(1:9, 2*20+1)*(10^rep(-20:20, each=9)),
+                labels = trans_format("log10", math_format(10^.x)))
+
+
+
+
 
 #' Create a pretty logscale for ggplot2
 #'
@@ -81,9 +104,10 @@ d |>
 #'   geom_line()+
 #'   gglogscale("bl", step=2)
 gglogscale <- function(side='bt', N=20, step=1){
-  output<-list(annotation_logticks(sides = side))
+  output<-list()
   if('b'%in%unlist(strsplit(side,"")) | 't'%in%unlist(strsplit(side,""))){
     output<-c(output,scale_x_log10(
+      guide = "axis_logticks",
       breaks = 10^(-seq(-N,N,by=step)),
       minor_breaks = rep(1:9, 2*N+1)*(10^rep(-N:N, each=9)),
       labels = scales::trans_format("log10", scales::math_format(10^.x))
@@ -91,6 +115,7 @@ gglogscale <- function(side='bt', N=20, step=1){
   }
   if('l'%in%unlist(strsplit(side,"")) | 'r'%in%unlist(strsplit(side,""))){
     output<-c(output,scale_y_log10(
+      guide = "axis_logticks",
       breaks = 10^(-seq(-N,N,by=step)),
       minor_breaks = rep(1:9, 2*N+1)*(10^rep(-N:N, each=9)),
       labels = scales::trans_format("log10", scales::math_format(10^.x))
@@ -100,10 +125,8 @@ gglogscale <- function(side='bt', N=20, step=1){
 }
 
 
-d <- tibble(x=seq(1,1e5,by=10),y=x)
-ggplot(data=d, aes(x=x, y=y))+
-  geom_line()+
-  gglogscale()
 ggplot(data=d, aes(x=x, y=y))+
   geom_line()+
   gglogscale("bl", step=2)
+
+
