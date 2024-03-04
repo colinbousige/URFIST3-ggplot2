@@ -69,6 +69,18 @@ mtcars |> # we work on the mtcars dataset, send it to ggplot
         geom_point() +   # plot with points
         facet____(___) # add a faceting
 
+### Bar plot
+
+# Using `geom_bar()`, plot the number of cars for each `cyl` value. 
+# Also, add a color depending on this count, and remove the legend, 
+# and add the count at the tip of each bar.
+mtcars |> # we work on the mtcars dataset, send it to ggplot
+    ggplot(aes(___))+ 
+        geom_bar(___) +   # plot with bars
+        geom_text(___) + # add the count as a label
+        ___ # remove the legend
+
+
 
 # # # # # # # # # # # # # # # # # # # # # # # # # 
 ## Exercise 2: arranging plots on a grid
